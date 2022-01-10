@@ -18,7 +18,7 @@ class TorchSMPL4Garment(nn.Module):
         # with open(model_path, 'rb') as reader:
         #     model = pickle.load(reader, encoding='iso-8859-1')
         model = SmplPaths(gender=gender).get_hres_smpl_model_data()
-        with open(os.path.join(global_var.DATA_DIR, global_var.GAR_INFO_FILE), 'rb') as f:
+        with open(os.path.join(global_var.DATA_DIR, 'dataset_meta', global_var.GAR_INFO_FILE), 'rb') as f:
             class_info = pickle.load(f)
         for k in class_info.keys():
             if isinstance(class_info[k]['vert_indices'], np.ndarray):
@@ -68,7 +68,7 @@ class TorchSMPL4Garment(nn.Module):
         self.cur_device = None
         self.num_verts = 27554
 
-        skirt_weight = np.load(os.path.join(global_var.DATA_DIR, 'skirt_weight.npz'))['w']
+        skirt_weight = np.load(os.path.join(global_var.DATA_DIR, 'dataset_meta', 'skirt_weight.npz'))['w']
         self.register_buffer('skirt_weight', torch.from_numpy(skirt_weight).float())
         skirt_skinning = skirt_weight.dot(np_weights)
         self.register_buffer('skirt_skinning', torch.from_numpy(skirt_skinning).float())

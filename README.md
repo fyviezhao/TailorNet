@@ -65,8 +65,11 @@ Code works with psbody.mesh v0.4 , pytorch >= v1.0 , chumpy v0.7 and scipy v1.3 
     - short-pant_female_weights
     - short-pant_male_weights
     - skirt_female_weights
-- Set output path in `run_tailornet.py` and run it to predict garments on some random inputs. You can play with 
-  different inputs. You can also run inference on motion sequence data.
+- Set output path in `run_tailornet.py` and run it to predict garments on some random inputs. You can play with different inputs. You can also run inference on motion sequence data.
+
+- When executing `run_tailornet.py`, if you run into this `NotImplementedError: Platform does not define a GLUT font retrieval function`, it can be resolved by
+`sudo apt-get install libosmesa6` plus `export PYOPENGL_PLATFORM=osmesa`.
+
 - To visualize predicted garment using blender, run `python run_tailornet.py render`. (Blender 2.79 needs to be installed.)
 
 ## TailorNet Per-vertex Error in mm on Test Set

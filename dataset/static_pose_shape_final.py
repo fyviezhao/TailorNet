@@ -139,7 +139,7 @@ class OneStyleShape(Dataset):
             return
 
         if self.smooth_level != 0 and self.smooth_level != -1:
-            with open(os.path.join(global_var.DATA_DIR, global_var.GAR_INFO_FILE), 'rb') as f:
+            with open(os.path.join(global_var.DATA_DIR, 'dataset_meta', global_var.GAR_INFO_FILE), 'rb') as f:
                 class_info = pickle.load(f)
             num_v = len(class_info[garment_class]['vert_indices'])
             self.smoothing = DiffusionSmoothing(
@@ -201,7 +201,7 @@ class MultiStyleShape(Dataset):
         if self.smooth_level != 0 and self.smooth_level != -1:
             print("Using Smoothing in the dataset")
             print(self.smooth_level, Ltype)
-            with open(os.path.join(global_var.DATA_DIR, global_var.GAR_INFO_FILE), 'rb') as f:
+            with open(os.path.join(global_var.DATA_DIR, 'dataset_meta', global_var.GAR_INFO_FILE), 'rb') as f:
                 class_info = pickle.load(f)
             num_v = len(class_info[garment_class]['vert_indices'])
             self.smoothing = DiffusionSmoothing(
@@ -324,7 +324,7 @@ def save_smooth():
     with open(os.path.join(data_dir, "test.txt"), "r") as f:
         train_pivots = [l.strip().split('_') for l in f.readlines()]
 
-    with open(os.path.join(global_var.DATA_DIR, global_var.GAR_INFO_FILE), 'rb') as f:
+    with open(os.path.join(global_var.DATA_DIR, 'dataset_meta', global_var.GAR_INFO_FILE), 'rb') as f:
         class_info = pickle.load(f)
     num_v = len(class_info[garment_class]['vert_indices'])
     smoothing = DiffusionSmoothing(

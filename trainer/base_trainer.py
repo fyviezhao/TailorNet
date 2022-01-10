@@ -49,7 +49,7 @@ class Trainer(object):
         self.smpl = SMPL4Garment(gender=self.gender)
 
         # garment specific things
-        with open(os.path.join(global_var.DATA_DIR, global_var.GAR_INFO_FILE), 'rb') as f:
+        with open(os.path.join(global_var.DATA_DIR, 'dataset_meta', global_var.GAR_INFO_FILE), 'rb') as f:
             class_info = pickle.load(f)
         self.body_f_np = self.smpl.smpl_base.f.astype(np.long)
         self.garment_f_np = class_info[self.garment_class]['f']
@@ -232,7 +232,7 @@ class Runner(object):
         model_name = params['model_name']
         garment_class = params['garment_class']
 
-        with open(os.path.join(global_var.DATA_DIR, global_var.GAR_INFO_FILE), 'rb') as f:
+        with open(os.path.join(global_var.DATA_DIR, 'dataset_meta', global_var.GAR_INFO_FILE), 'rb') as f:
             class_info = pickle.load(f)
         output_size = len(class_info[garment_class]['vert_indices']) * 3
 

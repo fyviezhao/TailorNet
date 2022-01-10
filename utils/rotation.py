@@ -25,7 +25,7 @@ def flip_theta(theta, batch=False):
 
 def get_Apose():
     """Return thetas for A-pose."""
-    with open(os.path.join(global_var.DATA_DIR, 'apose.pkl'), 'rb') as f:
+    with open(os.path.join(global_var.DATA_DIR, 'dataset_meta', 'apose.pkl'), 'rb') as f:
         APOSE = np.array(pickle.load(f, encoding='latin1')['pose']).astype(np.float32)
     flip_pose = flip_theta(APOSE)
     APOSE[[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15]] = 0

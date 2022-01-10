@@ -16,13 +16,13 @@ class SMPL4Garment(object):
         self.gender = gender
         smpl_model = SmplPaths(gender=gender).get_hres_smpl_model_data()
         self.smpl_base = Smpl(smpl_model)
-        with open(os.path.join(global_var.DATA_DIR, global_var.GAR_INFO_FILE), 'rb') as f:
+        with open(os.path.join(global_var.DATA_DIR, 'dataset_meta', global_var.GAR_INFO_FILE), 'rb') as f:
             self.class_info = pickle.load(f)
 
         # skirt_weight: n_skirt x n_body
         # skirt_skinning: n_skirt x 24
         self.skirt_weight = ch.array(np.load(os.path.join(
-            global_var.DATA_DIR, 'skirt_weight.npz'))['w'])
+            global_var.DATA_DIR, 'dataset_meta', 'skirt_weight.npz'))['w'])
         self.skirt_skinning = self.skirt_weight.dot(self.smpl_base.weights)
 
     def run(self, beta=None, theta=None, garment_d=None, garment_class=None):

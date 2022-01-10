@@ -1,4 +1,5 @@
 import os
+os.environ['PYOPENGL_PLATFORM'] = 'osmesa'
 import numpy as np
 import torch
 
@@ -16,6 +17,7 @@ from utils.interpenetration import remove_interpenetration_fast
 
 # Set output path where inference results will be stored
 OUT_PATH = "/BS/cpatel/work/code_test2"
+OUT_PATH = '/data/Projects-warehouse/TailorNet/results'
 
 
 def get_single_frame_inputs(garment_class, gender):
